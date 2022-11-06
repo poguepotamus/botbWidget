@@ -1,0 +1,117 @@
+{% comment %} {% load tailwind_tags %} {% endcomment %}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>BOTB 22 Widget</title>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <!-- Adding tailwind's css file -->
+        {% comment %} {% tailwind_css %} {% endcomment %}
+    </head>
+
+
+    <body>
+
+		<div class="botb-panel">
+			{% for item in items %}
+
+				<div class="flex">
+					<div class="w-full">{{item}}</div>
+					<div class="w-fit px-1">=</div>
+					<select class="w-full botb-item max-h-fit" name="{{item}}" id="people-{{item}}" onchange="updateSelections()">
+
+						{% for person, color in people.items %}
+							{% autoescape off %}
+								<option class="p-0 text-black" style="color:{{color}}" value="{{person}}">{{person}}</option>
+							{% endautoescape %}
+						{% endfor %}
+
+					</select>
+				</div>
+
+			{% endfor %}
+
+		</div>
+
+		<script>
+			// Mapping our colors to update on our selection
+			var colors = {
+				{% for person, color in people.items %}
+					"{{person}}": "{{color}}",
+				{% endfor %}
+			};
+
+			// Creating a owners dictionary to send back to websocket
+			var owners = {};
+
+			// Returns a htmlCollection ot all the select elements on the page
+			function getSelects() {
+				return document.getElementsByTagName("select");
+			};
+
+			// Called when a selection is updated
+			// Updates colors
+			// Reads values into `owners` dictionary to send to websocket
+			function updateSelections() {
+				const selects = getSelects();
+				owners = {};
+				for (let i = 0; i < selects.length; i++) {
+					// Collecting our item owners
+					var selectElement = selects[i];
+					owners[selectElement.name] = selectElement.value;
+				}
+
+				// Updating the option colors
+				updateColors();
+
+				// Updating the websocket
+				botbSocket.send(JSON.stringify({
+					'update': owners
+				}));
+
+				console.log(owners);
+			};
+
+			// Updates the colors of each selection
+			function updateColors() {
+				const selects = getSelects();
+				for (let i = 0; i < selects.length; i++) {
+					var selectElement = selects[i]
+					selectElement.style.color = colors[selectElement.value];
+				}
+			};
+
+			// Final setup on load
+			updateColors();
+
+
+
+			// Setting up connection to our websocket
+			const botbSocket = new WebSocket(
+				'ws://' + window.location.host + '/ws/botb22/'
+			);
+
+			// Receiving websocket packet
+			botbSocket.onUpdate = function(e) {
+				// Reading in the data sent from the websocket
+				const data = JSON.parse(e.data);
+
+				// Getting all our select elements
+				const selects = getSelects();
+
+				for (let i = 0; i < selects.length; i++) {
+					var selectElement = selects[i];
+					var value = data[selectElement.name];
+					selectElement.value = value;
+				}
+			};
+
+			botbSocket.onclose = function(e) {
+				console.error('BOTB socket failed, please reload page.');
+			};
+
+		</script>
+    </body>
+</html>
