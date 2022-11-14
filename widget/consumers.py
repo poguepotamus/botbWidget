@@ -5,6 +5,7 @@ from channels.generic.websocket import WebsocketConsumer
 
 class BotbConsumer(WebsocketConsumer):
 	def __init__(self):
+		super().__init__()
 		self.group_name = 'botb22'
 
 	def connect(self):
