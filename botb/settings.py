@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'daphne',
     'widget',
 
     'django.contrib.admin',
@@ -40,8 +41,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    # 'tailwind'
-    # @TODO install tailwind https://django-tailwind.readthedocs.io/en/latest/installation.html
+    'tailwind',
+    'theme',
+    # 'django_browser_reload',
 ]
 
 MIDDLEWARE = [
@@ -52,6 +54,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+    # 'django_browser_reload.middleware.BrowserReloadMiddleware',
 ]
 
 ROOT_URLCONF = 'botb.urls'
@@ -126,3 +130,16 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+# Tailwind config items
+TAILWIND_APP_NAME = 'theme'
+INTERNAL_IPS = [
+    '127.0.0.1'
+]
+
+# Setting our NPM path for tailwind
+NPM_BIN_PATH = r"C:\Program Files\nodejs\npm.cmd"
+
+# Daphne
+ASGI_APPLICATION = 'botb.asgi.application'

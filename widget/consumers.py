@@ -21,9 +21,8 @@ class BotbConsumer(WebsocketConsumer):
 		)
 
 	# Received a message from the websocket
-	def receive(self, text_data):
+	def receive(self, text_data=None, _=None):
 		# Sending a message to the group
-		print('received')
 		async_to_sync(self.channel_layer.group_send)(
 			self.group_name, {
 				'type': 'botb_update',
@@ -31,10 +30,8 @@ class BotbConsumer(WebsocketConsumer):
 			}
 		)
 
-
 	def botb_update(self, event):
 		update = event['update']
-		print('update')
 
 		# Sending a message to client websockets
 		self.send(text_data=json.dumps({'update': update}))
