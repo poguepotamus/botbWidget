@@ -94,9 +94,9 @@
 			);
 
 			// Receiving websocket packet
-			botbSocket.onUpdate = function(e) {
+			botbSocket.onmessage = function(e) {
 				// Reading in the data sent from the websocket
-				const data = JSON.parse(e.data);
+				const data = JSON.parse(e.data)['update'];
 
 				// Getting all our select elements
 				const selects = getSelects();
@@ -106,6 +106,8 @@
 					var value = data[selectElement.name];
 					selectElement.value = value;
 				}
+
+				updateColors();
 			};
 
 			botbSocket.onclose = function(e) {
