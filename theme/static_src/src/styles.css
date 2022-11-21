@@ -6,16 +6,18 @@
 /* Custom themes */
 @layer utilities {
     .botb-panel {
+        @apply text-4xl;
         @apply focus:outline-none;
-        @apply grid grid-cols-2 w-full gap-1 p-2;
-        @apply bg-slate-300;
+        @apply grid grid-cols-2 w-full gap-3 p-2;
+        @apply bg-slate-300/50;
         font-family: Verdana;
         @apply font-bold;
     }
 
-    .botb-item {
+    .botb-gift {
+        @apply text-4xl;
         @apply appearance-none focus:outline-none;
-        @apply border-none bg-none bg-slate-500/0;
+        @apply border-none bg-none bg-opacity-0 bg-slate-300/0;
         @apply py-0 px-0;
     }
 }

@@ -31,7 +31,7 @@ DEBUG = os.environ.get('DJANGO_DEBUG', '') != 'False'
 
 ALLOWED_HOSTS = [
     'hobocutie.com',
-    '127.0.0.1',
+    'localhost',
 ]
 
 
@@ -131,7 +131,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
-STATIC_URL = 'https://botb.s3.amazonaws.com/'
+STATIC_URL = 'prod/static/'
 STATIC_ROOT = 'prod/static/'
 
 # Default primary key field type
@@ -160,3 +160,6 @@ NPM_BIN_PATH = r"C:\Program Files\nodejs\npm.cmd"
 
 # Daphne
 ASGI_APPLICATION = 'botb.asgi.application'
+
+# Data file because I can't be bothered to use a database right now
+BOTB_DATA_FILE = 'botb_data.json'

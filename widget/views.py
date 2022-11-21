@@ -1,17 +1,6 @@
 from django.shortcuts import render
+from botb.gifts import get_botb_data
 
 def widget(request):
-	return render(request, 'widget/widget.html', {
-		'items': [
-			'$200',
-			'Toothbrush',
-			'Blob Seal',
-			'Rocktopus',
-			'Mouse Pad',
-		],
-		'people': {
-			'': '',
-			'matthew': '#f1beb0',
-			'kayla': '#ff0000',
-		}
-	})
+	botb_data = get_botb_data()
+	return render(request, 'widget/widget.html', botb_data)

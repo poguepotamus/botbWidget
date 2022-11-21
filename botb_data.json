@@ -1,0 +1,14 @@
+{
+    "people": {
+        "&mdash;": "#00ff00",
+        "matthew": "#0000ff",
+        "kayla": "#ff0000"
+    },
+    "gifts": {
+        "$200": "\u2014",
+        "Toothbrush": "kayla",
+        "Blob Seal": "\u2014",
+        "Rocktopus": "kayla",
+        "Mouse Pad": "\u2014"
+    }
+}
