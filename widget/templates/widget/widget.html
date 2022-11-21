@@ -17,12 +17,12 @@
     <body>
 
 		<div class="botb-panel">
-			{% for item in items %}
+			{% for gift, owner in gifts.items %}
 
 				<div class="flex">
-					<div class="w-full">{{item}}</div>
+					<div class="w-full">{{gift}}</div>
 					<div class="w-fit px-2">=</div>
-					<select class="w-full botb-item max-h-fit" name="{{item}}" id="people-{{item}}" onchange="updateSelections()">
+					<select class="w-full botb-gift max-h-fit" name="{{gift}}" id="people-{{gift}}" onchange="sendOwners()">
 
 						{% for person, color in people.items %}
 							{% autoescape off %}
@@ -46,75 +46,76 @@
 			};
 
 			// Creating a owners dictionary to send back to websocket
-			var owners = {};
+			var owners = {
+				{% for gift, owner in gifts.items %}
+					"{{gift}}": "{{owner}}",
+				{% endfor %}
+			};
 
-			// Returns a htmlCollection ot all the select elements on the page
 			function getSelects() {
+				/* Returns a htmlCollection ot all the select elements on the page.
+				*/
 				return document.getElementsByTagName("select");
 			};
 
-			// Called when a selection is updated
-			// Updates colors
-			// Reads values into `owners` dictionary to send to websocket
-			function updateSelections() {
-				const selects = getSelects();
+			function sendOwners() {
+				/* Gets the dictionary of owners to send back to the websocket
+				*/
+				// Clearing our dictionary of owners to fill out from the selection elements.
 				owners = {};
+
+				// Iterating through each select element
+				const selects = getSelects();
 				for (let i = 0; i < selects.length; i++) {
-					// Collecting our item owners
+					// Getting current element
 					var selectElement = selects[i];
+					// Collecting our item owners
 					owners[selectElement.name] = selectElement.value;
 				}
-
-				// Updating the option colors
-				updateColors();
 
 				// Updating the websocket
 				botbSocket.send(JSON.stringify({
 					'update': owners
 				}));
+			}
 
-				console.log(owners);
-			};
+			function updateSelections(newOnwers) {
+				/* Updates all selection elements using provided dictionary
 
-			// Updates the colors of each selection
-			function updateColors() {
+				Also updates the values per the 'colors' dictionary
+				*/
+				// Iterating through the select elements to give them the correct value
 				const selects = getSelects();
 				for (let i = 0; i < selects.length; i++) {
-					var selectElement = selects[i]
+					// Getting current element
+					var selectElement = selects[i];
+					// Setting our new element value
+					selectElement.value = newOnwers[selectElement.name];
 					selectElement.style.color = colors[selectElement.value];
 				}
 			};
 
-			// Final setup on load
-			updateColors();
-
-
-
-			// Setting up connection to our websocket
+			/* --------------------
+				Web Socket
+			-------------------- */
 			const botbSocket = new WebSocket(
 				'ws://' + window.location.host + '/ws/botb22/'
 			);
 
-			// Receiving websocket packet
 			botbSocket.onmessage = function(e) {
-				// Reading in the data sent from the websocket
-				const data = JSON.parse(e.data)['update'];
-
-				// Getting all our select elements
-				const selects = getSelects();
-
-				for (let i = 0; i < selects.length; i++) {
-					var selectElement = selects[i];
-					var value = data[selectElement.name];
-					selectElement.value = value;
-				}
-
-				updateColors();
+				// Recives webpacket function and handles the information
+				updateSelections(JSON.parse(e.data)['update']);
 			};
 
 			botbSocket.onclose = function(e) {
+				// When the botb socket fails for any reason
 				console.error('BOTB socket failed, please reload page.');
 			};
+
+			/* ------------------
+				Main script
+			------------------ */
+			updateSelections(owners);
 
 		</script>
     </body>

@@ -14,7 +14,7 @@
         @apply font-bold;
     }
 
-    .botb-item {
+    .botb-gift {
         @apply text-4xl;
         @apply appearance-none focus:outline-none;
         @apply border-none bg-none bg-opacity-0 bg-slate-300/0;

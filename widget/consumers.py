@@ -3,6 +3,8 @@ import json
 from asgiref.sync import async_to_sync
 from channels.generic.websocket import WebsocketConsumer
 
+from botb.gifts import write_botb_owner_data
+
 class BotbConsumer(WebsocketConsumer):
 	def __init__(self):
 		super().__init__()
@@ -24,10 +26,13 @@ class BotbConsumer(WebsocketConsumer):
 	# Received a message from the websocket
 	def receive(self, text_data=None, _=None):
 		# Sending a message to the group
+		update_data = json.loads(text_data)['update']
+		write_botb_owner_data(update_data)
+
 		async_to_sync(self.channel_layer.group_send)(
 			self.group_name, {
 				'type': 'botb_update',
-				'update': json.loads(text_data)['update']
+				'update': update_data
 			}
 		)
 

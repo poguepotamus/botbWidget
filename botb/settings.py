@@ -160,3 +160,6 @@ NPM_BIN_PATH = r"C:\Program Files\nodejs\npm.cmd"
 
 # Daphne
 ASGI_APPLICATION = 'botb.asgi.application'
+
+# Data file because I can't be bothered to use a database right now
+BOTB_DATA_FILE = 'botb_data.json'
