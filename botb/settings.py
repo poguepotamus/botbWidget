@@ -31,7 +31,7 @@ DEBUG = os.environ.get('DJANGO_DEBUG', '') != 'False'
 
 ALLOWED_HOSTS = [
     'hobocutie.com',
-    '127.0.0.1',
+    'localhost',
 ]
 
 
