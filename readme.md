@@ -2,6 +2,10 @@
 
 This widget simple displays Battle of the Bois gift information in a method that's easy to add to OBS. This should allow authorized users to browse to `http://<domain>/botb/console/` and change values while `http://<domain>/botb/widget` will always update from those values.
 
+This is an example of the widget in it's initial stable form.
+
+![Initial widget example](widgetExample.png)
+
 ## Production Machine Setup
 
 Here is some random commands that I know need to be run to run the setup machine. This should be done after the production machine has finished updating and an appropriate system user made for running the server.
