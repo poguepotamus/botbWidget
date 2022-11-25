@@ -10,6 +10,7 @@ daphne = "*"
 django-tailwind = "*"
 channels-redis = "*"
 asgi-redis = "*"
+whitenoise = "*"
 
 [dev-packages]
 pylint = "*"
