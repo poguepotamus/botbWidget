@@ -156,7 +156,10 @@ INTERNAL_IPS = [
 ]
 
 # Setting our NPM path for tailwind
-NPM_BIN_PATH = r"C:\Program Files\nodejs\npm.cmd"
+NPM_BIN_PATH = os.environ.get(
+    'NPM_BIN_PATH',
+    r'C:\Program Files\nodejs\npm.cmd'
+)
 
 # Daphne
 ASGI_APPLICATION = 'botb.asgi.application'
