@@ -6,7 +6,7 @@
 /* Custom themes */
 @layer utilities {
     .botb-panel {
-        @apply text-4xl;
+        @apply text-2xl;
         @apply focus:outline-none;
         @apply grid grid-cols-2 w-full gap-3 p-2;
         @apply bg-slate-300/50;
@@ -15,7 +15,7 @@
     }
 
     .botb-gift {
-        @apply text-4xl;
+        @apply text-2xl;
         @apply appearance-none focus:outline-none;
         @apply border-none bg-none bg-opacity-0 bg-slate-300/0;
         @apply py-0 px-0;
