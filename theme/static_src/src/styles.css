@@ -6,10 +6,10 @@
 /* Custom themes */
 @layer utilities {
     .botb-panel {
-        @apply text-2xl;
+        @apply text-2xl text-slate-300;
         @apply focus:outline-none;
         @apply grid grid-cols-2 w-full gap-3 p-2;
-        @apply bg-slate-300/50;
+        @apply bg-black/60;
         font-family: Verdana;
         @apply font-bold;
     }
@@ -17,7 +17,7 @@
     .botb-gift {
         @apply text-2xl;
         @apply appearance-none focus:outline-none;
-        @apply border-none bg-none bg-opacity-0 bg-slate-300/0;
+        @apply border-none bg-none bg-opacity-0 bg-black/0;
         @apply py-0 px-0;
     }
 }
