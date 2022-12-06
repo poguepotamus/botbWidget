@@ -20,9 +20,9 @@
 			{% for gift, owner in gifts.items %}
 
 				<div class="flex">
-					<div class="w-full">{{gift}}</div>
+					<div class="w-full text-right">{{gift}}</div>
 					<div class="w-fit px-2">=</div>
-					<select class="w-full botb-gift max-h-fit" name="{{gift}}" id="people-{{gift}}" onchange="sendOwners()">
+					<select class="w-52 botb-gift max-h-fit" name="{{gift}}" id="people-{{gift}}" onchange="sendOwners()">
 
 						{% for person, color in people.items %}
 							{% autoescape off %}

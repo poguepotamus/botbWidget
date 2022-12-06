@@ -16,7 +16,7 @@ Including another URLconf
 from django.urls import include, path
 
 urlpatterns = [
-    path('botb/', include('widget.urls')),
+    path('battleotbois2022/', include('widget.urls')),
 
     # path('__reload__/', include('django_browser_reload.urls')),
 ]
