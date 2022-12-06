@@ -1,14 +1,28 @@
 {
     "people": {
-        "&mdash;": "#00ff00",
-        "matthew": "#0000ff",
-        "kayla": "#ff0000"
+        "\u2014": "#000000",
+        "Paddy": "#6a5efe",
+        "Katie": "#c0c9ff",
+        "Sammy": "#46fda1",
+        "Lukas": "#ce0000",
+        "Pata": "#00fdfe",
+        "Flash": "#00cfb3"
     },
     "gifts": {
-        "$200": "\u2014",
-        "Toothbrush": "kayla",
-        "Blob Seal": "\u2014",
-        "Rocktopus": "kayla",
-        "Mouse Pad": "\u2014"
+        "Cat Statue": "\u2014",
+        "Oodie": "\u2014",
+        "Star": "\u2014",
+        "Dino Dick": "\u2014",
+        "Pillow": "\u2014",
+        "Art": "\u2014",
+        "Peripheral": "\u2014",
+        "Merch": "\u2014",
+        "Daddy": "\u2014",
+        "Vacuum": "\u2014",
+        "France": "\u2014",
+        "Chair": "\u2014",
+        "M1 (25g)": "\u2014",
+        "M2 (45g)": "\u2014",
+        "M3 (1.3kg)": "\u2014"
     }
 }
