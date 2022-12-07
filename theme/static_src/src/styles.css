@@ -8,7 +8,7 @@
     .botb-panel {
         @apply text-3xl text-slate-300;
         @apply focus:outline-none;
-        @apply grid grid-cols-2 w-full gap-3 py-2 px-8;
+        @apply grid grid-cols-2 w-full gap-3 pt-2 pb-8 px-8;
         @apply bg-black/60;
         font-family: Verdana;
         @apply font-bold;
